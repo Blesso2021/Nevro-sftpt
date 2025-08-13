@@ -16,3 +16,13 @@ steps:
       - --runtime=java17
       - --entry-point=gcfv2.GmSFTPParser
       - --allow-unauthenticated
+      --set-secrets nevroAuthURL"="projects/241881754384/secrets/nevro_AUTH_URL/versions/1" \
+      --set-secrets nevroClientID="projects/241881754384/secrets/nevro_CLIENT_ID/versions/1" \
+      --set-secrets nevroClientSecret="projects/241881754384/secrets/nevro_CLIENT_SECRET/versions/1" \
+      --set-secrets nevroJUploadURL="projects/241881754384/secrets/nevro_JSON_UPLOAD_URL/versions/1" \
+      --set-secrets nevroSFTPPass="projects/241881754384/secrets/nevro_SFTP_pass/versions/1" \
+      --set-secrets nevroSFTPHost="projects/241881754384/secrets/nevroSFTPHost/versions/1" \
+      --set-secrets nevroSFTPTestPath="projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1" \
+      --set-secrets nevroSFTPUser="projects/241881754384/secrets/nevroSFTPUser/versions/1" \
+      
+      
