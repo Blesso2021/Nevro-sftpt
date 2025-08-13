@@ -1,0 +1,18 @@
+
+steps:
+  - name: 'maven:3.9.4-eclipse-temurin-17'
+    entrypoint: 'mvn'
+    args: ['clean', 'package']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - functions
+      - deploy
+      - FUNCTION_NAME
+      - --region=europe-west1
+      - --source=.
+      - --trigger-http
+      - --runtime=java17
+      - --entry-point=gcfv2.GmSFTPParser
+      - --allow-unauthenticated
