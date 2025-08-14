@@ -34,9 +34,9 @@ public class GmSFTPParser implements HttpFunction {
         String sftpPass = System.getenv("nevroSFTPPass");
         String sftpFilePath =System.getenv("nevroSFTPTestPath");
 		logger.info("strSFTPHost"+strSFTPHost);
-		logger.info("nevroSFTPUser"+nevroSFTPUser);
-		logger.info("nevroSFTPPass"+nevroSFTPPass);
-		logger.info("nevroSFTPTestPath"+nevroSFTPTestPath);
+		logger.info("nevroSFTPUser"+strSFTPUser);
+		logger.info("nevroSFTPPass"+sftpPass);
+		logger.info("nevroSFTPTestPath"+sftpFilePath);
 
         logger.info("Request received");
 
