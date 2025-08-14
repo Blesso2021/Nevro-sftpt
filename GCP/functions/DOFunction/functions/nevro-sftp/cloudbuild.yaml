@@ -1,20 +1,12 @@
-
 steps:
+  # 1. Build with Maven
   - name: 'maven:3.9.4-eclipse-temurin-17'
     entrypoint: 'mvn'
     args: ['clean', 'package']
 
+  # 2. Deploy to Cloud Functions with secrets
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    secretEnv: [
-    'nevroAuthURL',
-    'nevroClientID', 
-    'nevroClientSecret',
-    'nevroJUploadURL',
-    'nevroSFTPPass', 
-    'nevroSFTPHost',
-    'nevroSFTPUser'
-  ]
     args:
       - functions
       - deploy
@@ -25,39 +17,6 @@ steps:
       - --runtime=java17
       - --entry-point=gcfv2.GmSFTPParser
       - --allow-unauthenticated
-      - --set-secrets 
-      - nevroAuthURL=projects/241881754384/secrets/nevro_AUTH_URL/versions/1
-      - --set-secrets 
-      - nevroClientID=projects/241881754384/secrets/nevro_CLIENT_ID/versions/1
-      - --set-secrets 
-      - nevroClientSecret=projects/241881754384/secrets/nevro_CLIENT_SECRET/versions/1
-      - --set-secrets 
-      - nevroJUploadURL=projects/241881754384/secrets/nevro_JSON_UPLOAD_URL/versions/1
-      - --set-secrets 
-      - nevroSFTPPass=projects/241881754384/secrets/nevro_SFTP_pass/versions/1
-      - --set-secrets 
-      - nevroSFTPHost=projects/241881754384/secrets/nevroSFTPHost/versions/1
-      - --set-secrets 
-      - nevroSFTPTestPath=projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1
-      - --set-secrets 
-      - nevroSFTPUser=projects/241881754384/secrets/nevroSFTPUser/versions/1
-    availableSecrets:
-      secretManager:
-      - versionName: projects/241881754384/secrets/nevro_AUTH_URL/versions/1
-        env: 'nevroAuthURL'
-      - versionName: projects/241881754384/secrets/nevro_CLIENT_ID/versions/1
-        env: 'nevroClientID'
-      - versionName: projects/241881754384/secrets/nevro_CLIENT_SECRET/versions/1
-        env: 'nevroClientSecret'
-      - versionName: projects/241881754384/secrets/nevro_JSON_UPLOAD_URL/versions/1
-        env: 'nevroJUploadURL'
-      - versionName: projects/241881754384/secrets/nevro_SFTP_pass/versions/1
-        env: 'nevroSFTPPass'
-      - versionName: projects/241881754384/secrets/nevroSFTPHost/versions/1
-        env: 'nevroSFTPHost'
-      - versionName: projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1
-        env: 'nevroSFTPTestPath'
-      - versionName: projects/241881754384/secrets/nevroSFTPUser/versions/1
-        env: 'nevroSFTPUser'
-      
-      
+      - --gen2
+      - --set-secrets
+      - nevroAuthURL=projects/241881754384/secrets/nevro_AUTH_URL/versions/1,nevroClientID=projects/241881754384/secrets/nevro_CLIENT_ID/versions/1,nevroClientSecret=projects/241881754384/secrets/nevro_CLIENT_SECRET/versions/1,nevroJUploadURL=projects/241881754384/secrets/nevro_JSON_UPLOAD_URL/versions/1,nevroSFTPPass=projects/241881754384/secrets/nevro_SFTP_pass/versions/1,nevroSFTPHost=projects/241881754384/secrets/nevroSFTPHost/versions/1,nevroSFTPTestPath=projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1,nevroSFTPUser=projects/241881754384/secrets/nevroSFTPUser/versions/1
