@@ -6,6 +6,15 @@ steps:
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
+    secretEnv: [
+    'nevroAuthURL',
+    'nevroClientID', 
+    'nevroClientSecret',
+    'nevroJUploadURL',
+    'nevroSFTPPass', 
+    'nevroSFTPHost',
+    'nevroSFTPUser'
+  ]
     args:
       - functions
       - deploy
@@ -32,5 +41,23 @@ steps:
       - nevroSFTPTestPath=projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1
       - --set-secrets 
       - nevroSFTPUser=projects/241881754384/secrets/nevroSFTPUser/versions/1
+    availableSecrets:
+      secretManager:
+      - versionName: projects/241881754384/secrets/nevro_AUTH_URL/versions/1
+        env: 'nevroAuthURL'
+      - versionName: projects/241881754384/secrets/nevro_CLIENT_ID/versions/1
+        env: 'nevroClientID'
+      - versionName: projects/241881754384/secrets/nevro_CLIENT_SECRET/versions/1
+        env: 'nevroClientSecret'
+      - versionName: projects/241881754384/secrets/nevro_JSON_UPLOAD_URL/versions/1
+        env: 'nevroJUploadURL'
+      - versionName: projects/241881754384/secrets/nevro_SFTP_pass/versions/1
+        env: 'nevroSFTPPass'
+      - versionName: projects/241881754384/secrets/nevroSFTPHost/versions/1
+        env: 'nevroSFTPHost'
+      - versionName: projects/241881754384/secrets/nevroSFTPTESTFilePath/versions/1
+        env: 'nevroSFTPTestPath'
+      - versionName: projects/241881754384/secrets/nevroSFTPUser/versions/1
+        env: 'nevroSFTPUser'
       
       
